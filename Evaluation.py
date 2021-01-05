@@ -40,7 +40,7 @@ def get_na_count(dataset):
 
 if __name__ == "__main__":
     trainingDataset = pd.read_csv('training_set.csv')
-    testDataset = pd.read_csv('test.csv')  # inserire il nome del file di test
+    testDataset = pd.read_csv('training_set.csv')  # inserire il nome del file di test
 
     print("Dati mancanti: ")
     print(get_na_count(testDataset))
@@ -55,8 +55,8 @@ if __name__ == "__main__":
     print("-------------------")
     x = trainingDataset.iloc[:, 0:20].values #separazione dei dati dalle label
     y = trainingDataset.iloc[:, 20].values
-    x_test = trainingDataset.iloc[:, 0:20].values
-    y_test = trainingDataset.iloc[:, 20].values
+    x_test = testDataset.iloc[:, 0:20].values
+    y_test = testDataset.iloc[:, 20].values
     train_x = model_selection.train_test_split(x, y, test_size=0.2, random_state=0)[0] #ottengo il dataset con cui ho addestrato il modello, in modo da poter fare sca
     x_test = scaling(train_x, x_test)
     # feature selection
